@@ -4,12 +4,19 @@ function init() {
   addEventListeners();
 }
 
+function getForm() {
+  var form = document.createElement('form')
+  var input = document.createElement('input')
+  form.appendChild(input)
+  return form;
+}
+
 function addEventListeners() {
 
   // Add show button click event
   var addShowBtn = document.querySelector('.add-show-button');
   addShowBtn.addEventListener('click', function() {
-    openDialog('add show', 'TODO: add show form');
+    openDialog('add show', getForm());
   });
 
   // Dialog background click event

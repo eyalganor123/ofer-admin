@@ -35,5 +35,5 @@ function _render(title, content) {
   titleElement.innerHTML = title;
 
   var contentElement = document.querySelector('.dialog .content');
-  contentElement.innerHTML = content;
+  $('.dialog .content').html(content);
 }
