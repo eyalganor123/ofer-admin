@@ -3,10 +3,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>Ofer Admin</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <script src="./script.js"></script>
+    <!-- Shows list - populated by ui.js -->
+    <div class="shows-list-container">
+      <!-- Unordered list -->
+      <ul class="shows-list"></ul>
+
+      <!-- Empty state -->
+      <div class="empty-state">empty state</div>
+    </div>
+
+    <!-- Dialog - populated by dialog.js -->
+    <div style="display: none;" class="dialog-background center"></div>
+    <div style="display: none;" class="dialog center">
+      <div class="title"></div>
+      <div class="css-divider"></div>
+      <div class="content"></div>
+    </div>
+
+    <!-- Add show button -->
+    <button class="add-show-button">+</button>
+
+    <!-- Scripts -->
+    <script src="./main.js"></script>
+    <script src="./dialog.js"></script>
+    <script src="./ui.js"></script>
+    <!-- <script src="./test.js"></script> -->
   </body>
 </html>
