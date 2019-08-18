@@ -9,13 +9,15 @@
 </head>
 
 <body>
+    <h1>THESE ARE YOUR CURRENT SHOWS</h1>
     <!-- Shows list - populated by ui.js -->
     <div class="shows-list-container">
         <!-- Unordered list -->
-        <ul class="shows-list center"></ul>
+        <ol class="shows-list">
+        </ol>
 
         <!-- Empty state -->
-        <div class="empty-state">empty state </div>
+        <div id="empty-state"></div>
     </div>
 
     <!-- Dialog - populated by dialog.js -->
@@ -32,8 +34,13 @@
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="./main.js"></script>
-    <script src="./dialog.js"></script>
+    <!-- <script src="./localstorage.js"></script> -->
     <script src="./ui.js"></script>
+
+    <script src="./forms.js"></script>
+
+    <script src="./dialog.js"></script>
+
     <!-- <script src="./test.js"></script> -->
 </body>
 
