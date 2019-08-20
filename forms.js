@@ -1,23 +1,17 @@
 function getAddForm() {
-    var form = document.createElement('div');
+    var addFormParams = [{ class: "container" },
+    { id: "inputDescription", placeholder: "Description" },
+    { id: "inputLocation", placeholder: "Location" },
+    { id: "inputDate", type: "date", required: "required" },
+    { class: "add-submit-button", innerHTML: "go!" }];
+    var addElements = ["div", "input", "input", "input", "button"];
+    var addVariables = ["form", "inputDescription", "inputLocation", "inputDate", "addButton"]
 
-    var inputDescription = document.createElement('input');
-    inputDescription.id = "inputDesription";
-    inputDescription.placeholder = "Description";
+    for (var index = 0; index < addVariables.length; index++) {
+        window[addVariables[index]] = createNewElement(addElements[index], addFormParams[index]);
+    }
 
-    var inputLocation = document.createElement('input');
-    inputLocation.id = "inputLocation";
-    inputLocation.placeholder = "Location";
-
-    var inputDate = document.createElement('input');
-    inputDate.type = "date";
-    inputDate.id = "inputDate";
-    inputDate.required = true;
-
-    var addButton = document.createElement('button');
-    addButton.setAttribute("class", "add-submit-button");
-    addButton.innerHTML = "submit";
-    addButton.addEventListener('click', function() {
+    addButton.addEventListener('click', function () {
         validate(inputDescription.value, inputLocation.value, inputDate.value);
 
     });
@@ -56,60 +50,20 @@ function clearList() {
 function getEditForm(i) {
     var form = document.createElement('div');
 
-    var inputDescription = document.createElement('input');
-    inputDescription.id = "inputDescription";
-    var showInfo = state.shows[i].description;
-    inputDescription.value = showInfo;
+    var inputDescriptionParams = { id: "inputDescription", value: state.shows[i].description };
+    var inputDescription = createNewElement('input', inputDescriptionParams);
 
-    var inputLocation = document.createElement('input');
-    inputLocation.id = "inputLocation";
-    var showLocation = state.shows[i].showLocation;
-    inputLocation.value = showLocation;
+    var inputLocationParams = { id: "inputLocation", value: state.shows[i].showLocation };
+    var inputLocation = createNewElement('input', inputLocationParams);
 
-    var inputDate = document.createElement('input');
-    var showDate = state.shows[i].date;
-    console.log(showDate);
-    inputDate.value = showDate;
-    inputDate.type = "date";
-    inputDate.name = "date";
-    inputDate.id = "inputDate";
+    var inputDateParams = { type: "date", name: "date", id: "inputDate", value: state.shows[i].date };
+    var inputDate = createNewElement('input', inputDateParams);
 
-    var addButton = document.createElement('button');
-    addButton.setAttribute("class", "add-submit-button");
-    addButton.innerHTML = "submit";
+    var addButtonParams = { class: "add-submit-button", innerHTML: "submit", onclick: "finalAdd(" + i + ")"  };
+    var addButton = createNewElement('button', addButtonParams);
 
-    var deleteButton = document.createElement('button');
-    deleteButton.setAttribute("class", "delete-button");
-    deleteButton.innerHTML = "delete";
-    deleteButton.addEventListener('click', function() {
-
-        deleteShow(i);
-        clearList();
-        if (state.shows == "") {
-            document.getElementById("empty-state").innerHTML = "you have no shows, press + to add a new show";
-        }
-        renderShows(state.shows);
-        var testObject = state.shows;
-        localStorage.setItem('testObject', JSON.stringify(testObject));
-        closeDialog();
-
-    });
-
-
-    addButton.addEventListener('click', function() {
-
-        var newDescription = document.getElementById("inputDescription").value;
-        var newLocation = document.getElementById("inputLocation").value;
-        var newDate = document.getElementById("inputDate").value;
-        var newData = { description: newDescription, showLocation: newLocation, date: newDate }
-        updateShow(newData, i);
-        clearList();
-        renderShows(state.shows);
-        closeDialog();
-
-    });
-
-
+    var addDeleteParams = { class: "delete-button", innerHTML: "delete", onclick: "finalDelete(" + i + ")" };
+    var deleteButton = createNewElement('button', addDeleteParams);
 
     form.appendChild(inputDescription);
     form.appendChild(inputLocation);
@@ -119,18 +73,29 @@ function getEditForm(i) {
 
     return form;
 }
-
-var retrievedObject = localStorage.getItem('testObject');
-
-if ((JSON.parse(retrievedObject)) == "") {
-    console.log("you have no shows, press + to add a new show");
-    document.getElementById("empty-state").innerHTML = "you have no shows, press + to add a new show";
-    // $(".empty-state").innerText = "you have no shows, press + to add a new show";
-
-
-} else {
-    oldState = (JSON.parse(retrievedObject));
-    state.shows = oldState;
-    console.log(oldState);
-    renderShows(oldState);
+function finalDelete(i) {
+    deleteShow(i);
+    clearList();
+    if (state.shows == "") {
+        document.getElementById("empty-state").innerHTML = "you have no shows, press + to add a new show";
+    }
+    renderShows(state.shows);
+    setLocal();
+    closeDialog();
 }
+function finalAdd(i) {
+    var newDescription = document.getElementById("inputDescription").value;
+    var newLocation = document.getElementById("inputLocation").value;
+    var newDate = document.getElementById("inputDate").value;
+    var newData = {
+        description: newDescription,
+        showLocation: newLocation,
+        date: newDate};
+
+    updateShow(newData, i);
+    clearList();
+    renderShows(state.shows);
+    closeDialog();
+}
+
+getLocal();
