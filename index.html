@@ -1,5 +1,4 @@
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,18 +6,16 @@
     <title>Ofer Admin</title>
     <link rel="stylesheet" href="./style.css" />
 </head>
-
 <body>
-    <!-- Shows list - populated by ui.js -->
-    <div class="shows-list-container">
-        <!-- Unordered list -->
-        <ul class="shows-list center"></ul>
 
-        <!-- Empty state -->
-        <div class="empty-state">empty state </div>
+    <h1>THESE ARE YOUR CURRENT SHOWS</h1>
+    <div class="shows-list-container">
+        <ol class="shows-list">
+        </ol>
+
+        <div id="empty-state"></div>
     </div>
 
-    <!-- Dialog - populated by dialog.js -->
     <div style="display: none;" class="dialog-background center"></div>
     <div style="display: none;" class="dialog center">
         <div class="title"></div>
@@ -26,15 +23,16 @@
         <div class="content"></div>
     </div>
 
-    <!-- Add show button -->
     <button class="add-show-button">+</button>
 
-    <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="./main.js"></script>
-    <script src="./dialog.js"></script>
+    <script src="./create.js"></script>
     <script src="./ui.js"></script>
-    <!-- <script src="./test.js"></script> -->
+    <script src="./localstorage.js"></script>
+    <script src="./forms.js"></script>
+    <script src="./dialog.js"></script>
+
 </body>
 
 </html>
