@@ -3,6 +3,7 @@ var state = {
 };
 
 function createShow(description, showLocation, date) {
+    if(!state.shows) return;
     var newShow = { description, showLocation, date, id: getId() };
     state.shows.push(newShow);
 }
@@ -16,7 +17,7 @@ function updateShow(paramtersToUpdate, i) {
     for (let index = 0; index < keysToUpdate.length; index++) {
         var key = keysToUpdate[index];
         var value = paramtersToUpdate[key];
-        state.shows[(i)][key] = value;
+        state.shows[i][key] = value;
     }
 }
 
@@ -34,6 +35,7 @@ function getIndex(id) {
 }
 
 function getId() {
+    if(!state.shows) return;
     if (state.shows.length === 0) {
         return 1;
     }

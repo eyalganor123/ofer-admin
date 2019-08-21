@@ -2,6 +2,7 @@ init();
 
 function init() {
     addEventListeners();
+    $('.empty-state').html('you have no shows, press + to add a new show');
 }
 
 function addEventListeners() {
@@ -21,6 +22,7 @@ function addEventListeners() {
 function renderShows(shows) {
     var listElement = document.querySelector('.shows-list');
     var i = -1;
+    if(!shows) return;
     shows.forEach(function(show) {
         i++;
         var listElementAttributes = {
